@@ -44,8 +44,9 @@ const Edit = () => {
 
   return (
     Data && Data[0] ? (
-    <div>
-      <div className="flex justify-center my-20">
+    <div className="flex justify-center">
+      <div className="flex items-center py-5 my-10 border border-gray-300 rounded-lg shadow-md w-[800px] flex-col">
+      <h2>Edit Information Car</h2>
       <Form form={form} 
         name="wrap"
         // labelCol={{ flex: '110px' }}
