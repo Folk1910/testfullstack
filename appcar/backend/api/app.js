@@ -51,15 +51,23 @@ app.put('/update', function (req, res, next) {
   const car_model = req.body.car_model;
   const note = req.body.note;
   const id = req.body.id;
+  const update_date = new Date();
 
-
-  connection.query('UPDATE `information` SET `vehicle_registration` = ?, `car_brand` = ?, `car_model` = ?, `note` = ? WHERE `id` = ?', 
-    [vehicle_registration, car_brand, car_model, note, id], 
+  connection.query('UPDATE `information` SET `vehicle_registration` = ?, `car_brand` = ?, `car_model` = ?, `note` = ?, `update_date` = ? WHERE `id` = ?', 
+    [vehicle_registration, car_brand, car_model, note, update_date, id], 
     function (error, results, fields) {
     if (error) throw error;
     res.json({ message: req.body });
   });
 });
+
+app.delete('/delete/:id', function (req, res, next) {
+  connection.query('DELETE FROM `information` WHERE `id` = ?', [req.params.id], function (error, results, fields) {
+  if (error) throw error;
+    res.json({ message: 'Deleted successfully' });
+  });
+});
+
 
 app.listen(3333, function () {
   console.log('web server listening on port 3333');

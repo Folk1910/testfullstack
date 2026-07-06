@@ -1,5 +1,5 @@
 import React ,{ useState, useEffect, useRef  } from 'react';
-import { Space, Table,Button, Input} from 'antd';
+import { Space, Table,Button, Input, message, Popconfirm} from 'antd';
 import Axios from 'axios';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -102,7 +102,17 @@ const Home = () => {
         setListData(response.data);
       })
   }, []);
-  
+
+  const confirm = (id) => () => {
+      Axios.delete(`http://localhost:3333/delete/${id}`)
+      .then(response => {
+        window.location.reload();
+      });
+  };
+
+  const cancel = e => {
+  };
+
   const columns = [
     {
       title: 'ทะเบียนรถยนต์',
@@ -136,20 +146,22 @@ const Home = () => {
           <a href={`/edit/${record.id}`}>
             <EditOutlined />
           </a>
-          <div>
-            <DeleteOutlined onClick={() => {
-              // Axios.delete(`http://localhost:3333/delete/${record.id}`)
-              //   .then(response => {
-              //     window.location.reload();
-              //   });
-            }
-            } />
-          </div>
+          <Popconfirm
+            title="Delete the information"
+            description="Are you sure to delete this information?"
+            onConfirm={confirm(record.id)}
+            onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
+          >
+            <DeleteOutlined></DeleteOutlined>
+          </Popconfirm>
         </Space>
       ),
     },
   ];
 
+  
   return (
     <div>
       <Table columns={columns} dataSource={listData} />
