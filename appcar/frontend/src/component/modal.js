@@ -5,7 +5,7 @@ const Modal = ({ isVisible }) => {
 
  return (
         isVisible && <Result
-        className="absolute top-[10%] left-[50%] transform -translate-x-1/2 w-[400px] h-25 bg-white z-50 border border-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center"
+        className="absolute top-[20%] left-[50%] transform -translate-x-1/2 w-[400px] h-25 bg-white z-50 border border-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center"
         status="success"
         title="Success"
         extra={[

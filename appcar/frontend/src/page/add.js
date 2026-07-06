@@ -92,12 +92,11 @@ const Add = () => {
       </Form.Item>
       </Form>
       </div>
-      <div className="flex">
+      {isModal && <div className="flex bg-gray-100 w-full fixed z-50 h-screen top-0 left-0 bg-opacity-50">
         <Modal isVisible={isModal} />
-      </div>
+      </div>}
     </div>
-    
   );
-};
+}
 
 export default Add;
