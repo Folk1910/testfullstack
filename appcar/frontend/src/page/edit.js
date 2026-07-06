@@ -2,7 +2,6 @@ import React,{ useState, useEffect }  from 'react';
 import { Button, Form, Input, Space,DatePicker } from 'antd';
 import Axios from 'axios';
 import Modal from '../component/modal';
-import { Spin } from 'antd';
 import { useParams } from 'react-router-dom';
 import { CarTwoTone } from '@ant-design/icons';
 import dayjs from 'dayjs';
@@ -87,21 +86,15 @@ const Edit = () => {
       </Form.Item>
       <Form.Item>
         <Space className="flex justify-center">
-          <Button type="primary" htmlType="submit">{
-            isModal ? 
-            <Spin styles={stylesObject}></Spin> : 'Submit' 
-            }
-            </Button>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
           <Button htmlType="reset">
-            {isModal ? 
-            <Spin></Spin> : 'Reset' 
-            }
-            </Button>
-            <Button onClick={() => window.location.href = '/'} >
-             {isModal ? 
-             <Spin></Spin> : 'Cancel' 
-              }
-             </Button>
+            Reset
+          </Button>
+          <Button onClick={() => window.location.href = '/'} >
+            Cancel
+          </Button>
         </Space>
       </Form.Item>
       </Form>
