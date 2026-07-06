@@ -59,7 +59,7 @@ const Add = () => {
       </Form.Item>
       
       <Form.Item>
-        <Space>
+        <Space className="flex justify-center">
           <Button type="primary" htmlType="submit">{
             isModal ? 
             <Spin styles={stylesObject}></Spin> : 'Submit' 
