@@ -4,7 +4,7 @@ import Axios from 'axios';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
-
+import { CarTwoTone } from '@ant-design/icons';
 const Home = () => {
 
   const [searchText, setSearchText] = useState('');
@@ -72,7 +72,7 @@ const Home = () => {
     ),
     filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1677ff' : undefined }} />,
     onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+      record[dataIndex]?.toString().toLowerCase().includes(value.toLowerCase()),
     filterDropdownProps: {
       onOpenChange(open) {
         if (open) {
@@ -98,8 +98,12 @@ const Home = () => {
   useEffect(() => {
     Axios.get('http://localhost:3333/list')
       .then(response => {
-        console.log('successfully:', response.data);
-        setListData(response.data);
+       const data = response.data.map(item => ({
+        ...item,
+        model_year: item?.model_year
+      }));
+
+        setListData(data);
       })
   }, []);
 
@@ -133,6 +137,24 @@ const Home = () => {
       ...getColumnSearchProps('car_model'),
     },
     {
+      title: 'เลขตัวถัง',
+      dataIndex: 'vin',
+      key: 'vin',
+      ...getColumnSearchProps('vin'),
+    },
+    {
+      title: 'ปีที่ผลิต',
+      dataIndex: 'model_year',
+      key: 'model_year',
+      ...getColumnSearchProps('model_year'),
+    },
+    {
+      title: 'สีตัวถัง',
+      dataIndex: 'body_color',
+      key: 'body_color',
+      ...getColumnSearchProps('body_color'),
+    },
+    {
       title: 'หมายเหตุ',
       dataIndex: 'note',
       key: 'note',
@@ -163,9 +185,10 @@ const Home = () => {
 
   
   return (
-    <div className="px-16 py-8">
-      <div className="flex justify-end mr-4">
-      <Button type="primary" href="/add" className="my-5">Add</Button>
+    <div className="px-16 py-8 border border-gray-300 rounded-lg shadow-md my-10 mx-10">
+      <div className="flex justify-end mr-4 justify-between">
+        <h2 className="text-xl font-bold"><CarTwoTone /> Information Car</h2>
+      <Button type="primary" href="/add" className="mb-5">Add</Button>
       </div>
       <Table columns={columns} dataSource={listData} pagination={{ pageSize: 10 }}/>
     </div>

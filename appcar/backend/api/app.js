@@ -11,7 +11,8 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
-  database : 'appcar'
+  database : 'appcar',
+  dateStrings: true,
 });
  
 connection.connect();
@@ -35,10 +36,14 @@ app.post('/add', function (req, res, next) {
   const vehicle_registration = req.body.vehicle_registration;
   const car_brand = req.body.car_brand;
   const car_model = req.body.car_model;
+  const vin = req.body.vin;
+  const model_year = req.body.model_year;
+  const body_color = req.body.body_color;
+
   const note = req.body.note;
 
-  connection.query('INSERT INTO information (vehicle_registration, car_brand, car_model, note) VALUES (?, ?, ?, ?)', 
-    [vehicle_registration, car_brand, car_model, note], 
+  connection.query('INSERT INTO information (vehicle_registration, car_brand, car_model, vin, model_year, body_color, note) VALUES (?, ?, ?, ?, ?, ?, ?)', 
+    [vehicle_registration, car_brand, car_model, vin, model_year, body_color, note], 
     function (error, results, fields) {
     if (error) throw error;
     res.json({ message: req.body });
@@ -49,12 +54,15 @@ app.put('/update', function (req, res, next) {
   const vehicle_registration = req.body.vehicle_registration;
   const car_brand = req.body.car_brand;
   const car_model = req.body.car_model;
+  const vin = req.body.vin;
+  const model_year = req.body.model_year;
+  const body_color = req.body.body_color;
   const note = req.body.note;
   const id = req.body.id;
   const update_date = new Date();
 
-  connection.query('UPDATE `information` SET `vehicle_registration` = ?, `car_brand` = ?, `car_model` = ?, `note` = ?, `update_date` = ? WHERE `id` = ?', 
-    [vehicle_registration, car_brand, car_model, note, update_date, id], 
+  connection.query('UPDATE `information` SET `vehicle_registration` = ?, `car_brand` = ?, `car_model` = ?, `vin` = ?, `model_year` = ?, `body_color` = ?, `note` = ?, `update_date` = ? WHERE `id` = ?', 
+    [vehicle_registration, car_brand, car_model, vin, model_year, body_color, note, update_date, id], 
     function (error, results, fields) {
     if (error) throw error;
     res.json({ message: req.body });

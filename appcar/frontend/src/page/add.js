@@ -1,9 +1,9 @@
 import React,{ useState }  from 'react';
-import { Button, Form, Input, Space } from 'antd';
+import { Button, Form, Input, Space,DatePicker } from 'antd';
 import Axios from 'axios';
 import Modal from '../component/modal';
 import { Spin } from 'antd';
-
+import { CarTwoTone } from '@ant-design/icons';
 const { TextArea } = Input;
 
 const Add = () => {
@@ -16,6 +16,9 @@ const Add = () => {
       vehicle_registration: values.vehicle_registration,
       car_brand: values.car_brand,
       car_model: values.car_model,
+      vin: values.vin,
+      model_year: values.model_year ? values.model_year.format('YYYY-MM-DD') : null,
+      body_color: values.body_color,
       note: values.note,
     })
     .then(response => {
@@ -33,7 +36,7 @@ const Add = () => {
   return (
     <div className="flex justify-center">
       <div className="flex items-center py-5 my-10 border border-gray-300 rounded-lg shadow-md w-[800px] flex-col">
-      <h2>Add Information Car</h2>
+      <h2><CarTwoTone /> Add Information Car</h2>
       <Form form={form} 
         name="wrap"
         // labelCol={{ flex: '110px' }}
@@ -54,6 +57,15 @@ const Add = () => {
       </Form.Item>
       <Form.Item name="car_model" label="รุ่นรถ" rules={[{ required: true, message: 'กรุณากรอกรุ่นรถของคุณ!' }]} >
         <Input placeholder='รุ่นรถ' type="text"/>
+      </Form.Item>
+      <Form.Item name="vin" label="เลขตัวถัง" rules={[{ required: true, message: 'กรุณากรอกเลขตัวถังของคุณ!' }]} >
+        <Input placeholder='เลขตัวถัง' type="text"/>
+      </Form.Item>
+      <Form.Item name="model_year" label="ปีที่ผลิต" rules={[{ required: true, message: 'กรุณากรอกปีที่ผลิตของคุณ!' }]} >
+        <DatePicker />
+      </Form.Item>
+      <Form.Item name="body_color" label="สีตัวถัง" rules={[{ required: true, message: 'กรุณากรอกสีตัวถังของคุณ!' }]} >
+        <Input placeholder='สีตัวถัง' type="text"/>
       </Form.Item>
       <Form.Item name="note" label="หมายเหตุ">
         <TextArea rows={5} placeholder='หมายเหตุ'/>
