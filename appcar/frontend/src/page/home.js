@@ -163,12 +163,11 @@ const Home = () => {
 
   
   return (
-    <div>
+    <div className="px-16 py-8">
       <div className="flex justify-end mr-4">
       <Button type="primary" href="/add" className="my-5">Add</Button>
-
       </div>
-      <Table columns={columns} dataSource={listData} />
+      <Table columns={columns} dataSource={listData} pagination={{ pageSize: 10 }}/>
     </div>
   );
 };
