@@ -3,7 +3,7 @@ import { Space, Table,Button, Input, message, Popconfirm} from 'antd';
 import Axios from 'axios';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined,PlusOutlined } from '@ant-design/icons';
 import { CarTwoTone } from '@ant-design/icons';
 const Home = () => {
 
@@ -185,13 +185,25 @@ const Home = () => {
 
   
   return (
+    <>
     <div className="px-16 py-8 border border-gray-300 rounded-lg shadow-md my-10 mx-10">
       <div className="flex justify-end mr-4 justify-between">
-        <h2 className="text-xl font-bold"><CarTwoTone /> Information Car</h2>
-      <Button type="primary" href="/add" className="mb-5">Add</Button>
+        <div className="flex items-center">
+          <CarTwoTone style={{ fontSize: '50px', color: '#08c' }}/> 
+          <div className="ml-4">
+            <h2 className="text-xl font-bold">Information Car</h2>
+            <p className="text-gray-600">จัดการข้อมูลรถยนต์</p>
+          </div>
+        </div>
+        <div className="flex items-center">
+          <Button type="primary" href="/add" icon={<PlusOutlined />}>Add</Button>
+        </div>
       </div>
+    </div>
+    <div className="px-16 py-8 border border-gray-300 rounded-lg shadow-md my-10 mx-10">
       <Table columns={columns} dataSource={listData} pagination={{ pageSize: 10 }}/>
     </div>
+    </>
   );
 };
 
