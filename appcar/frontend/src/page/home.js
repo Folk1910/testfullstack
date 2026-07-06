@@ -164,6 +164,10 @@ const Home = () => {
   
   return (
     <div>
+      <div className="flex justify-end mr-4">
+      <Button type="primary" href="/add" className="my-5">Add</Button>
+
+      </div>
       <Table columns={columns} dataSource={listData} />
     </div>
   );
