@@ -80,6 +80,11 @@ const Edit = () => {
             <Spin></Spin> : 'Reset' 
             }
             </Button>
+            <Button onClick={() => window.location.href = '/'} >
+             {isModal ? 
+             <Spin></Spin> : 'Cancel' 
+              }
+             </Button>
         </Space>
       </Form.Item>
       </Form>

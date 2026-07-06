@@ -20,8 +20,6 @@ const Add = () => {
       console.log('successfully:', response.data);
       setIsModal(true);
     })
-    .catch(error => {
-    }); 
   };
     
   const stylesObject = {
@@ -70,6 +68,11 @@ const Add = () => {
             <Spin></Spin> : 'Reset' 
             }
             </Button>
+          <Button onClick={() => window.location.href = '/'} >
+            {isModal ? 
+            <Spin></Spin> : 'Cancel' 
+            }
+          </Button>
         </Space>
       </Form.Item>
       </Form>
