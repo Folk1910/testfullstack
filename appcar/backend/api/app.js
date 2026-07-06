@@ -16,7 +16,7 @@ var connection = mysql.createConnection({
  
 connection.connect();
 
-app.get('/test', function (req, res, next) {
+app.get('/list', function (req, res, next) {
   connection.query('SELECT * FROM `information`', function (error, results, fields) {
   if (error) throw error;
     res.json(results);
