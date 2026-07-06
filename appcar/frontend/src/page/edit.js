@@ -5,6 +5,8 @@ import Modal from '../component/modal';
 import { Spin } from 'antd';
 import { useParams } from 'react-router-dom';
 
+const { TextArea } = Input;
+
 const Edit = () => {
   const [form] = Form.useForm();
   const { id } = useParams();
@@ -56,17 +58,17 @@ const Edit = () => {
         className="w-full"
         onFinish={onFinish}
       >
-      <Form.Item name="vehicle_registration" label="ทะเบียนรถยนต์" rules={[{ required: true }]} initialValue={Data && Data[0] ? Data[0].vehicle_registration : ''}  >
+      <Form.Item name="vehicle_registration" label="ทะเบียนรถยนต์" rules={[{ required: true, message: 'กรุณากรอกทะเบียนรถยนต์ของคุณ!' }]} initialValue={Data && Data[0] ? Data[0].vehicle_registration : ''}  >
         <Input placeholder='ทะเบียนรถยนต์' type="text" />
       </Form.Item>
-      <Form.Item name="car_brand" label="ยี่ห้อรถ" rules={[{ required: true }]} initialValue={Data && Data[0] ? Data[0].car_brand : ''}>
+      <Form.Item name="car_brand" label="ยี่ห้อรถ" rules={[{ required: true, message: 'กรุณากรอกยี่ห้อรถของคุณ!' }]} initialValue={Data && Data[0] ? Data[0].car_brand : ''}>
         <Input placeholder='ยี่ห้อรถ' type="text"  />
       </Form.Item>
-      <Form.Item name="car_model" label="รุ่นรถ" rules={[{ required: true }]} initialValue={Data && Data[0] ? Data[0].car_model : ''}  >
+      <Form.Item name="car_model" label="รุ่นรถ" rules={[{ required: true, message: 'กรุณากรอกรุ่นรถของคุณ!' }]} initialValue={Data && Data[0] ? Data[0].car_model : ''}  >
         <Input placeholder='รุ่นรถ' type="text" />
       </Form.Item>
-      <Form.Item name="note" label="หมายเหตุ" rules={[{ required: true }]} initialValue={Data && Data[0] ? Data[0].note : ''}  >
-        <Input placeholder='หมายเหตุ' type="text" />
+      <Form.Item name="note" label="หมายเหตุ" initialValue={Data && Data[0] ? Data[0].note : ''}  >
+        <TextArea rows={5} placeholder='หมายเหตุ'/>
       </Form.Item>
       <Form.Item>
         <Space>

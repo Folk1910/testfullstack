@@ -4,6 +4,8 @@ import Axios from 'axios';
 import Modal from '../component/modal';
 import { Spin } from 'antd';
 
+const { TextArea } = Input;
+
 const Add = () => {
   const [form] = Form.useForm();
 
@@ -43,17 +45,17 @@ const Add = () => {
         className="w-full"
         onFinish={onFinish}
       >
-      <Form.Item name="vehicle_registration" label="ทะเบียนรถยนต์" rules={[{ required: true }]}  >
+      <Form.Item name="vehicle_registration" label="ทะเบียนรถยนต์" rules={[{ required: true, message: 'กรุณากรอกทะเบียนรถยนต์ของคุณ!' }]}  >
         <Input placeholder='ทะเบียนรถยนต์' type="text"/>
       </Form.Item>
-      <Form.Item name="car_brand" label="ยี่ห้อรถ" rules={[{ required: true }]} >
+      <Form.Item name="car_brand" label="ยี่ห้อรถ" rules={[{ required: true, message: 'กรุณากรอกยี่ห้อรถของคุณ!' }]} >
         <Input placeholder='ยี่ห้อรถ' type="text"/>
       </Form.Item>
-      <Form.Item name="car_model" label="รุ่นรถ" rules={[{ required: true }]} >
+      <Form.Item name="car_model" label="รุ่นรถ" rules={[{ required: true, message: 'กรุณากรอกรุ่นรถของคุณ!' }]} >
         <Input placeholder='รุ่นรถ' type="text"/>
       </Form.Item>
-      <Form.Item name="note" label="หมายเหตุ" rules={[{ required: true }]} >
-        <Input placeholder='หมายเหตุ' type="text"/>
+      <Form.Item name="note" label="หมายเหตุ">
+        <TextArea rows={5} placeholder='หมายเหตุ'/>
       </Form.Item>
       
       <Form.Item>
