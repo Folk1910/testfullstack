@@ -23,6 +23,13 @@ app.get('/list', function (req, res, next) {
   });
 });
 
+app.get('/list/:id', function (req, res, next) {
+  connection.query('SELECT * FROM `information` WHERE id = ?', [req.params.id], function (error, results, fields) {
+  if (error) throw error;
+    res.json(results);
+  });
+});
+
 app.post('/add', function (req, res, next) {
   
   const vehicle_registration = req.body.vehicle_registration;
@@ -38,6 +45,21 @@ app.post('/add', function (req, res, next) {
   });
 });
 
+app.put('/update', function (req, res, next) {
+  const vehicle_registration = req.body.vehicle_registration;
+  const car_brand = req.body.car_brand;
+  const car_model = req.body.car_model;
+  const note = req.body.note;
+  const id = req.body.id;
+
+
+  connection.query('UPDATE `information` SET `vehicle_registration` = ?, `car_brand` = ?, `car_model` = ?, `note` = ? WHERE `id` = ?', 
+    [vehicle_registration, car_brand, car_model, note, id], 
+    function (error, results, fields) {
+    if (error) throw error;
+    res.json({ message: req.body });
+  });
+});
 
 app.listen(3333, function () {
   console.log('web server listening on port 3333');
